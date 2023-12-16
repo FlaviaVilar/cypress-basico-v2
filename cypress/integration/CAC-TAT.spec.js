@@ -129,4 +129,13 @@ describe("Central de Atendimento ao Cliente TAT", function () {
         expect($input[0].files[0].name).to.equal("image.png");
       });
   });
+
+  it("Validate opening link in another tab without clicking" , () => {
+    cy.get('#privacy a').should('have.attr', 'target', '_blank')
+  });
+
+  it("Validate opening link in another tab removing target" , () => {
+    cy.get('#privacy a').invoke('removeAttr', 'target').click();
+    cy.get('#white-background p').should('contain', 'Não salvamos dados submetidos no formulário da aplicação CAC TAT.')
+  });
 });
